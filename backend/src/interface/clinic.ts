@@ -1,5 +1,6 @@
 export interface IPatient {
   name: string;
+  email: string;
   typeOfCheckup: string;
 }
 
@@ -11,7 +12,7 @@ export enum FollowUpStatus {
 
 export interface IFollowUp {
   patientId: number;
-  followUpTime: Date;
+  followUpTime: Date | number;
   status: FollowUpStatus;
   token: string;
 }

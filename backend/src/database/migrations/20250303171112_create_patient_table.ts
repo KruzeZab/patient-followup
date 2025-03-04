@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 
-import { PATIENTS } from '../constants/dbTables';
+import { PATIENTS } from '../../constants/dbTables';
 
 const TABLE_NAME = PATIENTS;
 
@@ -15,6 +15,8 @@ export async function up(knex: Knex): Promise<void> {
     table.bigIncrements();
 
     table.string('name').notNullable();
+
+    table.string('email').unique().notNullable();
 
     table.string('type_of_checkup').notNullable();
 

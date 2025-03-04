@@ -1,9 +1,9 @@
 import winston, { format } from 'winston';
 
 const logFormat = format.printf((info) => {
-  const { timestamp, label, message, level } = info;
+  const { timestamp, message, level } = info;
 
-  return `${timestamp} [${label}] ${level}: ${message}`;
+  return `${timestamp} ${level}: ${message}`;
 });
 
 const logger = winston.createLogger({
@@ -21,6 +21,7 @@ const logger = winston.createLogger({
     }),
   ],
 });
+
 const loggerWithNameSpace = function (namespace: string) {
   return logger.child({ namespace });
 };

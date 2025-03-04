@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-import config from '@/config';
+import config from './config';
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.ethereal.email',

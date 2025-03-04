@@ -11,4 +11,9 @@ export const createPatientSchema = Joi.object<IPatient>({
     'any.required': 'Type of Checkup is required',
     'string.empty': 'Type of Checkup cannot be empty',
   }),
+  email: Joi.string().email().required().messages({
+    'any.required': 'Email is required',
+    'string.empty': 'Email cannot be empty',
+    'string.email': 'Invalid email format',
+  }),
 });

@@ -2,7 +2,7 @@ import BaseModel from '@/model/baseModel';
 
 import { IFollowUp, IPatient } from '@/interface/clinic';
 
-import { FOLLOW_UPS, PATIENTS } from '@/database/constants/dbTables';
+import { FOLLOW_UPS, PATIENTS } from '@/constants/dbTables';
 
 export default class ClinicModel extends BaseModel {
   static async createPatient(patient: IPatient) {
@@ -13,6 +13,15 @@ export default class ClinicModel extends BaseModel {
   }
 
   static async insertFollowUps(followUp: IFollowUp[]) {
-    return this.queryBuilder().insert(followUp).table(FOLLOW_UPS);
+    const result = await this.queryBuilder()
+      .insert(followUp)
+      .table(FOLLOW_UPS)
+      .returning('id');
+
+    return result.map((row: { id: number }) => row.id);
+  }
+
+  static async findPatientById(id: number) {
+    return this.queryBuilder().where({ id }).first().table(PATIENTS);
   }
 }

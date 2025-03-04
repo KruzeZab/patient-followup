@@ -5,23 +5,35 @@ import {
   IFollowUp,
   IPatient,
 } from '@/interface/clinic';
+
 import { addDaysToDate } from '@/util/date';
 import { generateToken } from '@/util/clinic';
-import { sendEmail } from '@/services/email';
-import { generateFollowUpMessage } from '@/util/email';
+import loggerWithNameSpace from '@/util/logger';
+
+import { scheduleFollowUpEmails } from '@/jobs/scheduler';
+
+const logger = loggerWithNameSpace('Clinic');
 
 export async function createPatient(
   name: string,
+  email: string,
   typeOfCheckup: string
 ) {
   const newPatient: IPatient = {
     name,
+    email,
     typeOfCheckup,
   };
 
   const [patient] = await ClinicModel.createPatient(newPatient);
 
+  logger.info(`Patient created with id: ${patient.id}`);
+
   await createFollowUps(patient.id);
+
+  logger.info(
+    `Follow ups created for patient with id: ${patient.id} `
+  );
 
   return patient.id;
 }
@@ -42,12 +54,21 @@ export async function createFollowUps(patientId: number) {
     token: generateToken(),
   }));
 
-  const { subject, body } = generateFollowUpMessage(
-    'Kaushal',
-    'Vaccination'
-  );
+  const followUpIds = await ClinicModel.insertFollowUps(followUps);
 
-  sendEmail('karelle.turcotte73@ethereal.email', subject, body);
+  const patient = await findPatientById(patientId);
 
-  return ClinicModel.insertFollowUps(followUps);
+  await scheduleFollowUpEmails(followUpIds, followUpTimes, patient);
+
+  return followUpIds;
+}
+
+/**
+ * Find patient by given patient id
+ *
+ */
+export async function findPatientById(patientId: number) {
+  logger.info(`Finding patient with id: ${patientId}`);
+
+  return ClinicModel.findPatientById(patientId);
 }

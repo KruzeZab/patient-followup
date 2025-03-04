@@ -1,5 +1,6 @@
-import config from '@/config';
-import transporter from '@/emailConfig';
+import config from '../config';
+
+import transporter from '../emailConfig';
 
 export function sendEmail(to: string, subject: string, text: string) {
   const mailOptions = {
