@@ -1,6 +1,7 @@
 import ClinicModel from '@/model/clinic';
 
 import {
+  FollowUpFilter,
   FollowUpStatus,
   IFollowUp,
   IPatient,
@@ -10,10 +11,16 @@ import { addDaysToDate } from '@/util/date';
 import { generateToken } from '@/util/clinic';
 import loggerWithNameSpace from '@/util/logger';
 
+import BadRequestError from '@/error/badRequestError';
+
 import { scheduleFollowUpEmails } from '@/jobs/scheduler';
 
 const logger = loggerWithNameSpace('Clinic');
 
+/**
+ * Add a new patient
+ *
+ */
 export async function createPatient(
   name: string,
   email: string,
@@ -38,6 +45,10 @@ export async function createPatient(
   return patient.id;
 }
 
+/**
+ * Add a new follow-up
+ *
+ */
 export async function createFollowUps(patientId: number) {
   const now = new Date();
 
@@ -71,4 +82,40 @@ export async function findPatientById(patientId: number) {
   logger.info(`Finding patient with id: ${patientId}`);
 
   return ClinicModel.findPatientById(patientId);
+}
+
+/**
+ * Fetch all follow ups
+ *
+ */
+export async function fetchFollowUps(filters: FollowUpFilter) {
+  logger.info(`Fetching followups with filters: ${filters}`);
+
+  return ClinicModel.fetchFollowUps(filters);
+}
+
+/**
+ * Update follow up status
+ *
+ */
+export async function updateFollowUpStatus(
+  followUpId: number,
+  status: FollowUpStatus
+) {
+  logger.info(
+    `Updating follow-up ID ${followUpId} to status: ${status}`
+  );
+
+  const [updatedFollowUp] = await ClinicModel.updateFollowUpStatus(
+    followUpId,
+    status
+  );
+
+  if (!updatedFollowUp) {
+    throw new BadRequestError(
+      `Follow-up with ID ${followUpId} not found`
+    );
+  }
+
+  return updatedFollowUp.id;
 }

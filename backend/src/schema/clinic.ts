@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { IPatient } from '@/interface/clinic';
+import { FollowUpStatus, IPatient } from '@/interface/clinic';
 
 export const createPatientSchema = Joi.object<IPatient>({
   name: Joi.string().required().messages({
@@ -16,4 +16,23 @@ export const createPatientSchema = Joi.object<IPatient>({
     'string.empty': 'Email cannot be empty',
     'string.email': 'Invalid email format',
   }),
+});
+
+export const updateFollowUpStatusSchema = Joi.object({
+  followUpId: Joi.number().integer().positive().required().messages({
+    'any.required': 'Follow-up ID is required',
+    'number.base': 'Follow-up ID must be a number',
+    'number.integer': 'Follow-up ID must be an integer',
+    'number.positive': 'Follow-up ID must be a positive number',
+  }),
+  status: Joi.string()
+    .valid(...Object.values(FollowUpStatus))
+    .required()
+    .messages({
+      'any.required': 'Status is required',
+      'string.base': 'Status must be a string',
+      'any.only': `Status must be one of ${Object.values(
+        FollowUpStatus
+      ).join(', ')}`,
+    }),
 });

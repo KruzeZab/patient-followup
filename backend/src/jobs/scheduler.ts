@@ -9,6 +9,10 @@ import { followUpQueue } from '@/jobs/queue';
 
 const logger = loggerWithNameSpace('Scheduler');
 
+/**
+ * Add email to scheduling
+ *
+ */
 export async function scheduleFollowUpEmails(
   followUpIds: number[],
   followUpTimes: Date[],

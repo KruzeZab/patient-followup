@@ -16,3 +16,7 @@ export interface IFollowUp {
   status: FollowUpStatus;
   token: string;
 }
+
+export interface FollowUpFilter {
+  status?: FollowUpStatus;
+}
