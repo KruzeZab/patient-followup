@@ -7,11 +7,18 @@
   "scripts": {
     "start": "node dist/main.js",
     "dev": "nodemon -r tsconfig-paths/register src/main.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "make:migration": "knex --knexfile=src/knexFile.ts migrate:make -x ts --env development",
+    "migrate": "knex --knexfile=src/knexFile.ts migrate:latest --verbose",
+    "rollback": "knex --knexfile=src/knexFile.ts migrate:rollback --verbose",
+    "seed": "knex --knexfile=src/knexFile.ts seed:run --verbose",
+    "make:seeder": "knex --knexfile=src/knexFile.ts seed:make -x ts --env development"
   },
   "devDependencies": {
+    "@types/camelize": "^1.0.1",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.8",
+    "@types/to-snake-case": "^1.0.2",
     "@types/winston": "^2.4.4",
     "dotenv": "^16.4.7",
     "nodemon": "^3.1.9",
@@ -20,8 +27,13 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "camelize": "^1.0.1",
     "express": "^4.21.2",
     "http-status-codes": "^2.3.0",
+    "joi": "^17.13.3",
+    "knex": "^3.1.0",
+    "pg": "^8.13.3",
+    "to-snake-case": "^1.0.0",
     "winston": "^3.17.0"
   }
 }
