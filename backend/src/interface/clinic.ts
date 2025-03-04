@@ -8,3 +8,10 @@ export enum FollowUpStatus {
   CONCERN = 'concern',
   HEALTHY = 'healthy',
 }
+
+export interface IFollowUp {
+  patientId: number;
+  followUpTime: Date;
+  status: FollowUpStatus;
+  token: string;
+}

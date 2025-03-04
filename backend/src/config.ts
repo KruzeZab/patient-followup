@@ -17,6 +17,11 @@ const serverConfig = {
     timezone: 'UTC',
     user: process.env.DB_USER,
   },
+
+  email: {
+    user: process.env.EMAIL_USER,
+    password: process.env.EMAIL_PASS,
+  },
 };
 
 export default serverConfig;

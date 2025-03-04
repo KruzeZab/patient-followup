@@ -1,6 +1,8 @@
 import { Knex } from 'knex';
 
-const TABLE_NAME = 'patients';
+import { PATIENTS } from '../constants/dbTables';
+
+const TABLE_NAME = PATIENTS;
 
 /**
  * Create table patients.

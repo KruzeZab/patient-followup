@@ -1,8 +1,9 @@
 import { Knex } from 'knex';
 
+import { FOLLOW_UPS } from '../constants/dbTables';
 import { FollowUpStatus } from '../../interface/clinic';
 
-const TABLE_NAME = 'follow_ups';
+const TABLE_NAME = FOLLOW_UPS;
 
 /**
  * Create table follow_ups.
