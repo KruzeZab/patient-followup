@@ -1,14 +1,13 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import { logger } from './middleware/logger';
 
-import config from '@/config';
+import routes from './routes';
+import config from './config';
 
-import routes from '@/routes';
-
-import { logger } from '@/middleware/logger';
 import {
   genericErrorHandler,
   notFoundError,
-} from '@/middleware/errorHandler';
+} from './middleware/errorHandler';
 
 const app = express();
 

@@ -1,11 +1,11 @@
-import loggerWithNameSpace from '@/util/logger';
-import { generateFollowUpMessage } from '@/util/email';
+import { IPatient } from '../interface/clinic';
 
-import { IPatient } from '@/interface/clinic';
+import { SEND_FOLLOW_UP } from '../constants/jobs';
 
-import { SEND_FOLLOW_UP } from '@/constants/jobs';
+import loggerWithNameSpace from '../util/logger';
+import { generateFollowUpMessage } from '../util/email';
 
-import { followUpQueue } from '@/jobs/queue';
+import { followUpQueue } from './queue';
 
 const logger = loggerWithNameSpace('Scheduler');
 

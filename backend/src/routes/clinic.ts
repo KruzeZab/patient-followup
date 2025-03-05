@@ -1,18 +1,16 @@
 import { Router } from 'express';
 
-import { validateReqBody } from '@/middleware/validator';
-
 import {
   createPatientSchema,
   updateFollowUpStatusSchema,
-} from '@/schema/clinic';
-
+} from '../schema/clinic';
 import {
   createPatient,
   fetchFollowUp,
   fetchFollowUps,
   updateFollowUpStatus,
-} from '@/controllers/clinic';
+} from '../controllers/clinic';
+import { validateReqBody } from '../middleware/validator';
 
 const router = Router();
 

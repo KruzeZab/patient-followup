@@ -1,13 +1,13 @@
-import BaseModel from '@/model/baseModel';
+import { FOLLOW_UPS, PATIENTS } from '../constants/dbTables';
 
-import { FOLLOW_UPS, PATIENTS } from '@/constants/dbTables';
+import BaseModel from './baseModel';
 
 import {
   FollowUpFilter,
   FollowUpStatus,
   IFollowUp,
   IPatient,
-} from '@/interface/clinic';
+} from '../interface/clinic';
 
 export default class ClinicModel extends BaseModel {
   /**

@@ -1,19 +1,19 @@
-import ClinicModel from '@/model/clinic';
+import BadRequestError from '../error/badRequestError';
 
 import {
   FollowUpFilter,
   FollowUpStatus,
   IFollowUp,
   IPatient,
-} from '@/interface/clinic';
+} from '../interface/clinic';
 
-import { addDaysToDate } from '@/util/date';
-import { generateToken } from '@/util/clinic';
-import loggerWithNameSpace from '@/util/logger';
+import ClinicModel from '../model/clinic';
 
-import BadRequestError from '@/error/badRequestError';
+import { scheduleFollowUpEmails } from '../jobs/scheduler';
 
-import { scheduleFollowUpEmails } from '@/jobs/scheduler';
+import { generateToken } from '../util/clinic';
+import { addDaysToDate } from '../util/date';
+import loggerWithNameSpace from '../util/logger';
 
 const logger = loggerWithNameSpace('Clinic');
 

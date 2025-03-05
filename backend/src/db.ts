@@ -3,7 +3,7 @@ import knex, { Knex } from 'knex';
 import { NextFunction } from 'express';
 import toSnakeCase from 'to-snake-case';
 
-import { baseKnexConfig } from '@/knexFile';
+import { baseKnexConfig } from './knexFile';
 
 const knexConfig: Knex.Config = {
   ...baseKnexConfig,

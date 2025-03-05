@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import clinicRoutes from '@/routes/clinic';
+import clinicRoutes from '../routes/clinic';
 
 const router = Router();
 

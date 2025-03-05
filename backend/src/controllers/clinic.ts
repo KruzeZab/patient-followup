@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import HttpStatus from 'http-status-codes';
 
-import * as clincService from '@/services/clinic';
+import * as clincService from '../services/clinic';
 
 /**
  * Create a patient

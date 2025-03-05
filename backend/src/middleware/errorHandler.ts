@@ -1,10 +1,10 @@
 import HttpStatus from 'http-status-codes';
 import { NextFunction, Request, Response } from 'express';
 
-import loggerWithNameSpace from '@/util/logger';
+import loggerWithNameSpace from '../util/logger';
 
-import NotFoundError from '@/error/notFoundError';
-import BadRequestError from '@/error/badRequestError';
+import BadRequestError from '../error/badRequestError';
+import NotFoundError from '../error/notFoundError';
 
 const logger = loggerWithNameSpace('ErrorHandler');
 

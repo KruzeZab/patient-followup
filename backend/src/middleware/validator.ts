@@ -1,7 +1,7 @@
 import { Schema } from 'joi';
 import { NextFunction } from 'express';
 
-import BadRequestError from '@/error/badRequestError';
+import BadRequestError from '../error/badRequestError';
 
 export function validateReqQuery(schema: Schema) {
   return (req: any, _res: Response, next: NextFunction) => {

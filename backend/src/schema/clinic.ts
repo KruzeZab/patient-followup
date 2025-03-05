@@ -1,6 +1,5 @@
 import Joi from 'joi';
-
-import { FollowUpStatus, IPatient } from '@/interface/clinic';
+import { FollowUpStatus, IPatient } from '../interface/clinic';
 
 export const createPatientSchema = Joi.object<IPatient>({
   name: Joi.string().required().messages({
