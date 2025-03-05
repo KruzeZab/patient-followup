@@ -4,6 +4,7 @@ const config = {
     followUp: '/follow-up',
     followUps: '/follow-ups',
     patients: '/patients',
+    feedback: '/follow-up/:token',
   },
 };
 

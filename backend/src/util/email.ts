@@ -4,7 +4,8 @@
  */
 export function generateFollowUpMessage(
   patientName: string,
-  typeOfCheckup: string
+  typeOfCheckup: string,
+  token: string
 ) {
   const subject = `Reminder: Follow-Up for Your ${typeOfCheckup}`;
 
@@ -15,7 +16,7 @@ export function generateFollowUpMessage(
 
     Please take a moment to update your status by clicking the link below:
 
-    [Update Follow-Up Status](#)  
+    http://localhost:3000/${token}
 
     Stay healthy,  
     Your Clinic Team

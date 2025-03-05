@@ -16,7 +16,8 @@ const logger = loggerWithNameSpace('Scheduler');
 export async function scheduleFollowUpEmails(
   followUpIds: number[],
   followUpTimes: Date[],
-  patient: IPatient
+  patient: IPatient,
+  followUpTokens: string[]
 ) {
   logger.info(
     `Scheduling follow up email for patient: ${patient.name}`
@@ -25,11 +26,13 @@ export async function scheduleFollowUpEmails(
   return await Promise.all(
     followUpIds.map((id, index) => {
       const followUpTime = followUpTimes[index];
+      const token = followUpTokens[index];
       const delay = followUpTime.getTime() - new Date().getTime();
 
       const { subject, body } = generateFollowUpMessage(
         patient.name,
-        patient.typeOfCheckup
+        patient.typeOfCheckup,
+        token
       );
 
       return followUpQueue.add(
@@ -40,7 +43,7 @@ export async function scheduleFollowUpEmails(
           subject,
           body,
         },
-        { delay: Math.max(0, delay) }
+        { delay: Math.max(0, 5000 * index + 1) }
       );
     })
   );

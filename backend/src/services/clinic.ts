@@ -73,11 +73,18 @@ export async function createFollowUps(patientId: number) {
     token: generateToken(),
   }));
 
+  const followUpTokens = followUps.map((followUp) => followUp.token);
+
   const followUpIds = await ClinicModel.insertFollowUps(followUps);
 
   const patient = await findPatientById(patientId);
 
-  await scheduleFollowUpEmails(followUpIds, followUpTimes, patient);
+  await scheduleFollowUpEmails(
+    followUpIds,
+    followUpTimes,
+    patient,
+    followUpTokens
+  );
 
   return followUpIds;
 }

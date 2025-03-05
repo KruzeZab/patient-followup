@@ -1,16 +1,15 @@
 import { FcOnlineSupport } from 'react-icons/fc';
-import Heading from '../components/heading/Heading';
-import config from '@/config';
+
+import Heading from '@/app/components/heading/Heading';
+
 import FollowUpForm from './FollowUpForm';
 
-const PatientFollowUp = async () => {
-  const response = await fetch(
-    `${config.baseUrl}${config.endpoints.followUp}/195605b8784-3af099a9`
-  );
-
-  const {
-    data: { token },
-  } = await response.json();
+const PatientFollowUp = async ({
+  params,
+}: {
+  params: { followUpToken: string };
+}) => {
+  const token = params.followUpToken;
 
   return (
     <div className="mt-10">

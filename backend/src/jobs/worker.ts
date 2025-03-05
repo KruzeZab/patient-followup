@@ -17,11 +17,15 @@ const followUpWorker = new Worker(
       await sendEmail(email, subject, body);
 
       logger.info(
-        `Follow-up email sent for follow-up ID: ${followUpId}`
+        `Follow-up email sent for follow-up ID: ${JSON.stringify(
+          followUpId
+        )}`
       );
     } catch (error) {
       logger.error(
-        `Failed to send follow-up email for ID: ${followUpId}`,
+        `Failed to send follow-up email for ID: ${JSON.stringify(
+          followUpId
+        )}`,
         error
       );
     }
