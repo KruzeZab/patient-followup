@@ -4,10 +4,6 @@
 
 This project is a **Virtual Patient Follow-Up System** designed to help veterinary clinics and healthcare providers automate post-procedure follow-ups. The system ensures that clinics can check on their patients (pets or humans) at scheduled intervals, allowing patients or pet owners to confirm recovery or report concerns. If a concern is raised, the clinic is notified immediately.
 
-## Detail Documentation
-
-[Click Here for detail documentation on AI and credentails used](https://google.com)
-
 ## 🔗 Video Demo
 
 👉 [Click Here to View the Demo of the Project](https://jam.dev/c/521e4939-6ebd-446a-b9dc-fc71c8e28e4d)
@@ -39,7 +35,7 @@ This project is a **Virtual Patient Follow-Up System** designed to help veterina
 - **Patient Interface:** Users can confirm recovery or raise concerns via a simple form.
 - **Notifications:** UI updates for clinics on urgent cases.
 - **Styling:** TailwindCSS for a clean UI.
-- **ServerSie Rendering:** NextJS.
+- **Server-Side Rendering:** NextJS.
 
 ## 🚀 Getting Started
 
@@ -67,7 +63,7 @@ This project is a **Virtual Patient Follow-Up System** designed to help veterina
    ```sh
    yarn start:worker
    ```
-6. Then install all the pacakges for frontend as well and run using command:
+6. Then install all the packages for frontend as well and run using command:
    ```sh
    yarn dev
    ```
@@ -80,3 +76,19 @@ This project is a **Virtual Patient Follow-Up System** designed to help veterina
 | GET    | `/follow-ups`    | Fetch all follow-ups                       |
 | POST   | `/respond`       | Respond to a follow-up (Healthy / Concern) |
 | GET    | `/notifications` | Fetch urgent notifications                 |
+
+## Screenshots
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+## 🧑‍💻 AI-Assisted Development
+
+AI tools were used in multiple parts of the development process to increase efficiency:
+
+- **Util Functions:** AI helped generate reusable helper functions like `interpolate` `buildUrl`.
+- **Migration Files:** AI-assisted in writing and structuring Knex migration files.
+- **Code Suggestions:** ChatGPT were used to autocomplete repetitive logic and provide best practices.
