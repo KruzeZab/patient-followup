@@ -26,6 +26,7 @@ This project is a **Virtual Patient Follow-Up System** designed to help veterina
 ### 🔹 Backend (Node.js + Express.js)
 
 - **Database:** PostgreSQL with Knex.js for query building.
+- **Background Workers:** Redis, BullMQ
 - **API Endpoints:**
   - `POST /patients` – Register a new patient.
   - `GET /follow-ups` – Fetch scheduled follow-ups.
