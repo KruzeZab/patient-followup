@@ -1,6 +1,8 @@
 import { RedisOptions } from 'ioredis';
 
+import config from './config';
+
 export const redisConfig: RedisOptions = {
-  host: '127.0.0.1',
-  port: 6379,
+  host: config.host,
+  port: config.redis.port,
 };

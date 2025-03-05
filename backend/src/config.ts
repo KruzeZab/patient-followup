@@ -6,7 +6,10 @@ config({ path: pathToEnv });
 
 const serverConfig = {
   serverPort: process.env.SERVER_PORT || 3000,
-
+  host: process.env.SERVER_HOST || '127.0.0.1',
+  redis: {
+    port: Number(process.env.REDIS_PORT) || 6379,
+  },
   database: {
     charset: 'utf8',
     client: process.env.DB_CLIENT,
