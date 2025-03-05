@@ -9,6 +9,7 @@ import {
 
 import {
   createPatient,
+  fetchFollowUp,
   fetchFollowUps,
   updateFollowUpStatus,
 } from '@/controllers/clinic';
@@ -22,6 +23,8 @@ router.post(
 );
 
 router.get('/follow-ups', fetchFollowUps);
+
+router.get('/follow-up/:token', fetchFollowUp);
 
 router.patch(
   '/follow-ups',

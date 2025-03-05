@@ -119,3 +119,13 @@ export async function updateFollowUpStatus(
 
   return updatedFollowUp.id;
 }
+
+/**
+ * Find followup by given token
+ *
+ */
+export async function fetchFollowUp(token: string) {
+  logger.info(`Fetching follow up with token: ${token}`);
+  console.log('fetch followup called');
+  return ClinicModel.fetchFollowUp(token);
+}

@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 
 import './globals.css';
-import Header from './components/header/Header';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Header from '@/app/components/header/Header';
+import { ToastContainer } from 'react-toastify';
 
 const montSans = Montserrat({
   variable: '--font-montserrat',
@@ -22,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montSans.variable} antialiased`}>
+        <ToastContainer position="top-right" autoClose={3000} />
         <Header />
         {children}
       </body>

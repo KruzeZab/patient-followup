@@ -19,11 +19,9 @@ export const createPatientSchema = Joi.object<IPatient>({
 });
 
 export const updateFollowUpStatusSchema = Joi.object({
-  followUpId: Joi.number().integer().positive().required().messages({
+  followUpId: Joi.string().required().messages({
     'any.required': 'Follow-up ID is required',
-    'number.base': 'Follow-up ID must be a number',
-    'number.integer': 'Follow-up ID must be an integer',
-    'number.positive': 'Follow-up ID must be a positive number',
+    'string.base': 'Follow-up ID must be a string',
   }),
   status: Joi.string()
     .valid(...Object.values(FollowUpStatus))

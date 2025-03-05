@@ -49,3 +49,18 @@ export async function updateFollowUpStatus(req: any, res: Response) {
     followUpId: updatedFollowUpId,
   });
 }
+
+/**
+ * Fetch a single follow up with given token.
+ *
+ */
+export async function fetchFollowUp(req: any, res: Response) {
+  const { token } = req.params;
+
+  const data = await clincService.fetchFollowUp(token);
+
+  res.status(HttpStatus.OK).json({
+    message: 'Follow-up fetched successfully',
+    data,
+  });
+}

@@ -47,13 +47,28 @@ export default class ClinicModel extends BaseModel {
    *
    */
   static async fetchFollowUps(filters: FollowUpFilter) {
-    const query = this.queryBuilder().select('*').from(FOLLOW_UPS);
+    const query = this.queryBuilder()
+      .select(
+        'follow_ups.id',
+        'follow_ups.followUpTime',
+        'follow_ups.status',
+        'patients.name',
+        'patients.email',
+        'patients.typeOfCheckup'
+      )
+      .from(FOLLOW_UPS)
+      .leftJoin(
+        'patients',
+        'patients.id',
+        '=',
+        'follow_ups.patientId'
+      );
 
     if (filters.status) {
-      query.where('status', filters.status);
+      query.where('follow_ups.status', filters.status);
     }
 
-    return query.orderBy('followUpTime', 'asc');
+    return query.orderBy('follow_ups.followUpTime', 'asc');
   }
 
   /**
@@ -67,7 +82,18 @@ export default class ClinicModel extends BaseModel {
     return this.queryBuilder()
       .update({ status })
       .from(FOLLOW_UPS)
-      .where('id', followUpId)
+      .where('token', followUpId)
       .returning('id');
+  }
+
+  /**
+   * Fetch a single follow up
+   *
+   */
+  static fetchFollowUp(token: string) {
+    return this.queryBuilder()
+      .where({ token })
+      .first()
+      .table(FOLLOW_UPS);
   }
 }
