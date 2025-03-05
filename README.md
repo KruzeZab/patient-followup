@@ -6,6 +6,8 @@ This project is a **Virtual Patient Follow-Up System** designed to help veterina
 
 ## 🔗 Video Demo
 
+The follow-up time has been scheduled to 5 seconds interval for demo purpose.
+
 👉 [Click Here to View the Demo of the Project](https://jam.dev/c/521e4939-6ebd-446a-b9dc-fc71c8e28e4d)
 
 ## 🔹 Features

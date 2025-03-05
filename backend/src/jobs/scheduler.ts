@@ -43,7 +43,7 @@ export async function scheduleFollowUpEmails(
           subject,
           body,
         },
-        { delay: Math.max(0, 5000 * index + 1) }
+        { delay: Math.max(0, delay) }
       );
     })
   );
