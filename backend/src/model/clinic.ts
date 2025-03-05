@@ -43,6 +43,17 @@ export default class ClinicModel extends BaseModel {
   }
 
   /**
+   * Find a patient with given id
+   *
+   */
+  static async findPatientByEmail(email: string) {
+    return this.queryBuilder()
+      .where({ email })
+      .first()
+      .table(PATIENTS);
+  }
+
+  /**
    * Fetch all follow ups
    *
    */

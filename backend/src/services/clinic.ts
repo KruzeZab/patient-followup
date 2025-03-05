@@ -26,6 +26,14 @@ export async function createPatient(
   email: string,
   typeOfCheckup: string
 ) {
+  const existingPatient = await ClinicModel.findPatientByEmail(email);
+
+  if (existingPatient) {
+    throw new BadRequestError(
+      'Patient with this email already exists'
+    );
+  }
+
   const newPatient: IPatient = {
     name,
     email,
@@ -126,6 +134,16 @@ export async function updateFollowUpStatus(
  */
 export async function fetchFollowUp(token: string) {
   logger.info(`Fetching follow up with token: ${token}`);
-  console.log('fetch followup called');
+
   return ClinicModel.fetchFollowUp(token);
+}
+
+/**
+ * Find patient with given email
+ *
+ */
+export async function findPatientByEmail(email: string) {
+  logger.info(`Finding patient with email: ${email}`);
+
+  return ClinicModel.findPatientByEmail(email);
 }
