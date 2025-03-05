@@ -8,10 +8,7 @@ import { updateFollowUp } from './actions';
 
 import { HealthStatus } from '@/interfaces/clinic';
 
-import { HOME } from '@/constants/routes';
-
 import Button from '@/app/components/button/Button';
-import { useRouter } from 'next/navigation';
 
 interface FollowUpFormProps {
   token: string;
@@ -23,8 +20,6 @@ const FollowUpForm = (props: FollowUpFormProps) => {
   const [loading, setLoading] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
-
-  const router = useRouter();
 
   const handleSubmit = async (formData: FormData) => {
     setLoading(true);
@@ -47,8 +42,6 @@ const FollowUpForm = (props: FollowUpFormProps) => {
         toast.success(result.message);
 
         formRef.current?.reset();
-
-        router.push(HOME);
       } else {
         toast.error(result.message || 'Something went wrong!');
       }
